@@ -122,28 +122,28 @@ function setupVideoCarouselAutoplay() {
 // Atlas view switching functionality
 const atlasConfig = {
     'llama3_8b': {
-        default: 'llama_3_w_gems.pdf',
-        math: 'llama_3_math_60.pdf',
-        coding: 'llama_3_coding_50.pdf',
-        routerbench: 'llama_3_total_60.pdf'
+        default: 'llama_3_w_gems.svg',
+        math: 'llama_3_math_60.svg',
+        coding: 'llama_3_coding_50.svg',
+        routerbench: 'llama_3_total_60.svg'
     },
     'mistral_7b': {
-        default: 'mistral_7b_w_gems.pdf',
-        math: 'mistral_7b_math_60.pdf',
-        coding: 'mistral_7b_coding_20.pdf',
-        routerbench: 'mistral_7b_total_50.pdf'
+        default: 'mistral_7b_w_gems.svg',
+        math: 'mistral_7b_math_60.svg',
+        coding: 'mistral_7b_coding_20.svg',
+        routerbench: 'mistral_7b_total_50.svg'
     },
     'qwen_3b': {
-        default: 'qwen_3b_w_gems.pdf',
-        math: 'qwen_3b_math_60.pdf',
-        coding: 'qwen_3b_coding_45.pdf',
-        routerbench: 'qwen_3b_total_65.pdf'
+        default: 'qwen_3b_w_gems.svg',
+        math: 'qwen_3b_math_60.svg',
+        coding: 'qwen_3b_coding_45.svg',
+        routerbench: 'qwen_3b_total_65.svg'
     },
     'qwen_7b': {
-        default: 'qwen_7b_w_gems.pdf',
-        math: 'qwen_7b_math_60.pdf',
-        coding: 'qwen_7b_coding_65.pdf',
-        routerbench: 'qwen_7b_total_60.pdf'
+        default: 'qwen_7b_w_gems.svg',
+        math: 'qwen_7b_math_60.svg',
+        coding: 'qwen_7b_coding_65.svg',
+        routerbench: 'qwen_7b_total_60.svg'
     }
 };
 
