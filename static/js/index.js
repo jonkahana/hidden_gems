@@ -155,17 +155,39 @@ function switchAtlasView(model, view) {
         console.error(`No configuration found for model: ${model}, view: ${view}`);
         return;
     }
-    
-    // Check if it's an img tag (for Llama) or iframe (for others)
-    if (element.tagName === 'IMG') {
-        // For img tags, use PDF directly without hash parameters
-        const pdfPath = `static/images/atlases/${model}/${config[view]}`;
-        element.src = pdfPath;
-    } else {
-        // For iframes, use PDF with hash parameters for viewer
-        const pdfPath = `static/images/atlases/${model}/${config[view]}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
-        element.src = pdfPath;
+
+    const isImg = element.tagName === 'IMG';
+    const newSrc = isImg
+        ? `static/images/atlases/${model}/${config[view]}`
+        : `static/images/atlases/${model}/${config[view]}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
+
+    // Skip if already showing this view
+    if (element.src.endsWith(newSrc) || element.getAttribute('src') === newSrc) {
+        return;
     }
+
+    // Create an overlay image for crossfade
+    const container = element.closest('.atlas-pdf-container');
+    const overlay = document.createElement('img');
+    overlay.src = newSrc;
+    overlay.alt = element.alt;
+    overlay.style.cssText =
+        'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 0.35s ease;z-index:1;';
+
+    container.appendChild(overlay);
+
+    // Once the new image is loaded, crossfade
+    overlay.onload = function() {
+        // Fade new image in (old image stays visible underneath)
+        overlay.style.opacity = '1';
+
+        // After the transition, swap the real src and remove the overlay
+        overlay.addEventListener('transitionend', function handler() {
+            overlay.removeEventListener('transitionend', handler);
+            element.src = newSrc;
+            overlay.remove();
+        });
+    };
     
     // Update active button state
     const panel = element.closest('.atlas-panel');

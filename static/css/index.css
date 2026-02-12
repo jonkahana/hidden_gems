@@ -852,6 +852,7 @@ a:focus {
   min-height: 600px;
   border: none;
   display: block;
+  transition: opacity 0.3s ease;
 }
 
 .atlas-caption {
